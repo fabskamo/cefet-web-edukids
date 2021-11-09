@@ -1,7 +1,11 @@
 /* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
  * botões play/stop (para que o elemento se revele lentamente)
  */
- #controles ul {}
+
+#controles ul:hover {
+    transition: transform 1s linear;
+}
+
 
 /*
  * Exercício 2: Você deve implementar uma metáfora visual para cada um dos 4
@@ -11,17 +15,71 @@
  *   - perturbado: animal fica pulsando
  *   - instinto-selvagem: animal dá um salto e cresce, com uma borda vermelha
  */
-.agitado {}
-.agitado img {}
 
-.alimentado {}
-.alimentado img {}
+.agitado {
+    position: relative;
+    animation: flutuando .5s ease-in-out 0s infinite alternate;
+}
 
-.perturbado {}
-.perturbado img {}
+@keyframes flutuando {
+    from {
+        top: 0;
+    }
+    to {
+        top: -20px;
+    }
+}
 
-.instinto-selvagem {}
-.instinto-selvagem img {}
+.alimentado {
+    animation: girando 1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes girando {
+    from {
+        transform: rotate(360deg);
+    }
+}
+
+.perturbado {
+    position: relative;
+    animation: agitando .1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes agitando {
+    from {
+        top: 0;
+    }
+    to {
+        top: -40px;
+    }
+}
+
+.instinto-selvagem>img {
+    animation: crescendo .9s ease-in 0s 1 forwards, salto .2s ease-in 0s 1 alternate;
+}
+
+@keyframes salto {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes crescendo {
+    from {
+        border: 2px solid rgb(236, 147, 162);
+        height: 200px;
+        width: 200px;
+    }
+    to {
+        border: 10px solid red;
+        height: 250px;
+        width: 250px;
+    }
+}
+
 
 /*
  * Exercício 3: Criar uma imagem sprite com as imagens dos botões de controle
